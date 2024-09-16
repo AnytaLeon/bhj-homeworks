@@ -11,6 +11,7 @@
 
 
 // второй вариант (не получилось сделать перенос на новую строку, пробовала добавить \n)
+// clickerStatus.innerHTML = `Всего кликов: ${clickCount}<br>Скорость клика: ${clickerSpeed}`
 const click = document.getElementById('clicker__counter');
 const clickerStatus = document.querySelector(".clicker__status");
 const image = document.getElementById('cookie'); 

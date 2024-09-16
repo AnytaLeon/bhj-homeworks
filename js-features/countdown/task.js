@@ -39,16 +39,26 @@
 // }, 1000);
 
 // третий вариант
-function startTimer() {
-    const timer = document.getElementById('timer');
-    timer.textContent -= 1;
-};
+// function startTimer() {
+//     const timer = document.getElementById('timer');
+//     timer.textContent -= 1;
+// };
+
+// let intervalId = setInterval(() => {
+//     if(parseInt(timer.textContent) === 0) {
+//         clearInterval(intervalId);
+//         location.assign("https://vrn.skvirel-shop.ru");
+//     };
+//     startTimer();
+
+// }, 1000);
+
+const timer = document.getElementById("timer");
 
 let intervalId = setInterval(() => {
-    if(parseInt(timer.textContent) === 0) {
-        clearInterval(intervalId);
-        location.assign("https://vrn.skvirel-shop.ru");
-    };
-    startTimer();
-
+  timer.textContent -= 1;
+  if (parseInt(timer.textContent) === 0) {
+    clearInterval(intervalId);
+    location.assign("https://vrn.skvirel-shop.ru");
+  }
 }, 1000);
