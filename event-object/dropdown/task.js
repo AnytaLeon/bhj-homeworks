@@ -4,7 +4,7 @@ const dropdownText = document.querySelector('.dropdown__value');
 const dropdownItems = [...document.querySelectorAll('.dropdown__link')];
 
 function openMenu() {
-    dropdownList.classList.add('dropdown__list_active')
+    dropdownList.classList.toggle('dropdown__list_active')
 };
 
 function closeMenu() {

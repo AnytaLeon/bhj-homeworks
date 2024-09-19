@@ -17,14 +17,6 @@ class Game {
   }
 
   registerEvents() {  
-    
-    setInterval(() => {
-      if(parseInt(this.timer.textContent) === 0) {
-        this.fail();
-      };
-      this.timer.textContent -= 1;
-    }, 2000);  
-
     window.addEventListener('keydown', (event) => {
       if(event.key === 'Shift' || event.key === 'Alt') return;
       if(this.currentSymbol.textContent.toLowerCase() === event.key.toLowerCase()) {
@@ -62,7 +54,19 @@ class Game {
 
   setNewWord() {
     const word = this.getWord();
+
+    //таймер отсчета равный длине слова, обновляю таймер и удаляю интервалID перед запуском нового таймера
     this.timer.textContent = word.length;
+
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(() => {
+      this.timer.textContent -= 1;
+
+      if(parseInt(this.timer.textContent) === 0) {
+        this.fail();      
+      };
+      
+    }, 1000);  
     this.renderWord(word);
  
   }
