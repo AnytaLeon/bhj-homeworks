@@ -8,7 +8,7 @@ function openMenu() {
 };
 
 function closeMenu() {
-    dropdownList.classList.remove('dropdown__list_active')
+    dropdownList.classList.toggle('dropdown__list_active')
 };
 
 dropdownText.addEventListener('click', openMenu);
