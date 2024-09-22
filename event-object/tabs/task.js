@@ -12,4 +12,4 @@ tab.forEach((item, index) => {
         item.classList.add('tab_active');
         tabContent[index].classList.add('tab__content_active');
     })
-})
+});
