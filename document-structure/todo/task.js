@@ -1,32 +1,40 @@
 const taskInput = document.querySelector('.tasks__input');
 const taskList = document.querySelector('.tasks__list');
+const addBtn = document.querySelector('.tasks__add');
 
 
-taskInput.addEventListener('keydown', function(event) {
-  if (taskInput.value && event.key === 'Enter') {
-    event.preventDefault();
+addBtn.addEventListener('click', function(event) {
 
-    //создаю шаблон задачи
-      let task = document.createElement('div');
-      task.classList.add('task');
-      let taskTitle = document.createElement('div');
-      taskTitle.classList.add('task__title');
-      task.insertAdjacentElement('beforeEnd', taskTitle);
-      task.insertAdjacentHTML("beforeend", '<a href="#" class="task__remove">&times;</a>');        
-      
-    //добавляю название задачи из input
-      taskTitle.textContent = taskInput.value;
+  event.preventDefault();
 
-    //добавляю в разметку эл-т с задачей
-      taskList.insertAdjacentElement('beforeEnd', task);
+  let text = taskInput.value.trim();
 
-    //добавляю обработчик для кнопки удаления задачи 
-      task.lastChild.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.target.parentElement.remove();
-      });
+  //Если в поле ввода есть текст, добавляю задачу в список
+  if(text) {
+    taskCreate(text);
 
     //очищаю input 
-      taskInput.value = '';
-  }
+    taskInput.value = '';
+  };
 });
+
+//функция создания задачи и добавления в список
+function taskCreate(text){
+  //создаю шаблон задачи
+  let task = document.createElement('div');
+  task.classList.add('task');
+  let taskTitle = document.createElement('div');
+  taskTitle.classList.add('task__title');
+  task.insertAdjacentElement('beforeEnd', taskTitle);
+  task.insertAdjacentHTML("beforeend", '<a href="#" class="task__remove">&times;</a>');        
+  taskTitle.textContent = text;
+
+  //добавляю в разметку эл-т с задачей
+  taskList.insertAdjacentElement('beforeEnd', task);
+
+  //добавляю обработчик для кнопки удаления задачи 
+  task.lastChild.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.target.parentElement.remove();
+  });
+}
