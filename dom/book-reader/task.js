@@ -6,27 +6,30 @@ const book = document.querySelector('.book');
 //функция изменения размера блока book
 function changeFontSize(size) {
     book.classList.remove('book_fs-big', 'book_fs-small');
+
     if(size) {
         book.classList.add('book_fs-' + size);
     }  
 };
 
+//функция обработчик события клик по иконкам (шрифт, цвет)
+function clickIcon(index, option, iconArray, func, optClass) {
+    func(option);        
+    iconArray.map((element,i) => {
+        if(i !== index) {
+            element.classList.remove(optClass);
+        } else {
+            element.classList.add(optClass);
+        }
+    });
+}
+
 //обработчик для изменения размера шрифта
 fontSizeSwitch.forEach((item, index) => {
-    item.addEventListener('click', (event) => {
-
-        event.preventDefault();
-
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
         let size = item.dataset.size;
-        changeFontSize(size);
-        
-        fontSizeSwitch.map((element,i) => {
-            if(i !== index) {
-                element.classList.remove('font-size_active');
-            };
-        });
-
-        event.currentTarget.classList.add('font-size_active');
+        clickIcon(index, size, fontSizeSwitch, changeFontSize, 'font-size_active');
     })
 });
 
@@ -43,15 +46,7 @@ colorTextSwitch.forEach((item, index) => {
         event.preventDefault();
 
         let color = item.dataset.textColor;
-        changeFontColor(color);
-        
-        colorTextSwitch.map((element,i) => {
-            if(i !== index) {
-                element.classList.remove('color_active');
-            };
-        });
-
-        event.currentTarget.classList.add('color_active');
+        clickIcon(index, color, colorTextSwitch, changeFontColor,'color_active');
     })
 });
 
@@ -68,14 +63,6 @@ bgColorSwitch.forEach((item, index) => {
         event.preventDefault();
 
         let color = item.dataset.bgColor;
-        changeBgColor(color);
-        
-        colorTextSwitch.map((element,i) => {
-            if(i !== index) {
-                element.classList.remove('color_active');
-            };
-        });
-
-        event.currentTarget.classList.add('color_active');
+        clickIcon(index, color, bgColorSwitch, changeBgColor,'color_active');
     })
 });

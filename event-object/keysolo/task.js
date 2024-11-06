@@ -17,7 +17,7 @@ class Game {
   }
 
   registerEvents() {  
-    window.addEventListener('keydown', (event) => {
+    window.addEventListener('keyup', (event) => {
       if(event.key === 'Shift' || event.key === 'Alt') return;
       if(this.currentSymbol.textContent.toLowerCase() === event.key.toLowerCase()) {
         this.success();
@@ -104,4 +104,3 @@ class Game {
 }
 
 new Game(document.getElementById('game'))
-
