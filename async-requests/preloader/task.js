@@ -19,6 +19,7 @@ if(storage.length) {
        loader.classList.add('loader_active');
  }
 
+ 
 //подписалась на событие readystatechange
 xhr.addEventListener('readystatechange', () => {
        if(xhr.readyState === xhr.DONE) {

@@ -2,6 +2,7 @@ const form = document.querySelector('#form');
 const progress = document.querySelector('#progress');
 const btn = document.querySelector('#send');
 
+
 btn.addEventListener('click', (e) => {
     e.preventDefault();
     const formData = new FormData(form);
