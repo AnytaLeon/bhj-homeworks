@@ -54,33 +54,63 @@
 
 
 //3. Вариант с debounce декоратором
-const rotatorCard = document.querySelector('.rotator');
+// const rotatorCard = document.querySelector('.rotator');
 
-let rotatorItem = document.querySelector('.rotator__case_active');
-let speed = rotatorItem.dataset.speed;
-rotatorItem.style.color = rotatorItem.dataset.color; 
+// let rotatorItem = document.querySelector('.rotator__case_active');
+// let speed = rotatorItem.dataset.speed;
+// rotatorItem.style.color = rotatorItem.dataset.color; 
 
-function rotator(){
-    rotatorItem.classList.remove('rotator__case_active');
+// function rotator(){
+//     rotatorItem.classList.remove('rotator__case_active');
 
-    if(rotatorItem.nextElementSibling === null) {
-        rotatorItem = rotatorCard.firstElementChild;   
-    } else {
-        rotatorItem = rotatorItem.nextElementSibling;  
-    };
-    rotatorItem.classList.add('rotator__case_active');
-    rotatorItem.style.color = rotatorItem.dataset.color;
-    speed = rotatorItem.dataset.speed;
+//     if(rotatorItem.nextElementSibling === null) {
+//         rotatorItem = rotatorCard.firstElementChild;   
+//     } else {
+//         rotatorItem = rotatorItem.nextElementSibling;  
+//     };
+//     rotatorItem.classList.add('rotator__case_active');
+//     rotatorItem.style.color = rotatorItem.dataset.color;
+//     speed = rotatorItem.dataset.speed;
 
-    setTimeout(rotator, speed)
+//     setTimeout(rotator, speed)
     
+// };
+
+// function debounceDecorator(func, speed) {
+//     return function(){
+//         setTimeout(func, speed)
+//     }
+// };
+
+// const debounceRotator = debounceDecorator(rotator, speed);
+// debounceRotator(rotator, speed)
+
+//4 вариант из разборного вебинара
+const cases = [...document.querySelectorAll('.rotator__case')];
+let currentIndex = cases.findIndex(item => item.classList.contains('rotator__case_active'))
+
+function getNextIndex() {
+    return currentIndex === cases.length - 1 ? 0 : currentIndex + 1
 };
 
-function debounceDecorator(func, speed) {
-    return function(){
-        setTimeout(func, speed)
-    }
+function toggleNextCase() {
+    let currentCase = cases[currentIndex];
+
+    let nextIndex = getNextIndex();
+    let nextCase = cases[nextIndex];
+
+    currentCase.classList.remove('rotator__case_active');
+    nextCase.classList.add('rotator__case_active');
+    nextCase.style.color = nextCase.dataset.color;
+
+    currentIndex = nextIndex;
+    sceduleCase(nextIndex);
+
 };
 
-const debounceRotator = debounceDecorator(rotator, speed);
-debounceRotator(rotator, speed)
+function sceduleCase(index) {
+    const speed = +cases[index].dataset.speed
+    setTimeout(toggleNextCase, speed)
+};
+
+sceduleCase(getNextIndex())
