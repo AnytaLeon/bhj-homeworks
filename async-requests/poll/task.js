@@ -42,6 +42,7 @@ xhr_post.addEventListener('load', () => {
 
 })
 
+
 function removeAnswers(){
     pollAnswers.innerHTML = '';
 }
