@@ -43,5 +43,9 @@
 
 .welcome_active {
   display: block;
-  text-align: center;
+  /* text-align: center; */
+}
+
+.logout__btn {
+  margin: 20px 0 0 0;
 }
