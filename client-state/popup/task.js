@@ -1,6 +1,5 @@
 const modal = document.querySelector('.modal');
 const closeBtn = document.querySelector('.modal__close');
-setCookie('year', '2024');
 
 if((document.cookie === '') || (getCookie('modal') !== 'close')){
     modal.classList.add('modal_active');
